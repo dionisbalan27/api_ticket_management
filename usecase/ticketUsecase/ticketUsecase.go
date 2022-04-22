@@ -26,7 +26,8 @@ func GetTicketUsecase(ticketRepository repository.TicketRepositoryInterface, jwt
 }
 
 func (t *ticketUsecase) CreateNewUser(newUser models.User) models.MsgRes {
-	paswordHash, _ := utils.HashPassword(newUser.Password)
+	passwordBase64 := utils.Base64(newUser.Password, "enc")
+	paswordHash, _ := utils.HashPassword(passwordBase64)
 	newUser.Password = paswordHash
 
 	userData, err := t.ticketRepo.CreateNewUser(newUser)

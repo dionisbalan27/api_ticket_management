@@ -38,8 +38,8 @@ func (repo *ticketRepository) CheckLogin(user models.Login) (*models.CheckLogin,
 	if err != nil {
 		return nil, err
 	}
-
-	match, err := utils.CheckPasswordHash(user.Password, data.Password)
+	passwordBase64 := utils.Base64(user.Password, "enc")
+	match, err := utils.CheckPasswordHash(passwordBase64, data.Password)
 	if !match {
 		fmt.Println("Hash and password doesn't match.")
 		return &data, err
