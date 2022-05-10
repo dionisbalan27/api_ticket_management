@@ -18,7 +18,8 @@ func init() {
 }
 
 func loadConfig() (err error) {
-	err = godotenv.Load()
+
+	err = godotenv.Load(`D:\project_sv\ms_latihan\backup_api_ticket_management\.env`)
 	if err != nil {
 		logrus.Fatal(err, " config/env: load gotdotenv")
 	}

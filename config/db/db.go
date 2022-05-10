@@ -73,7 +73,7 @@ func init() {
 }
 
 func AutoMigrate(db *gorm.DB) {
-	err2 := db.Debug().AutoMigrate(&models.TicketDB{}, &models.LogTable{})
+	err2 := db.Debug().AutoMigrate(&models.TicketDB{}, &models.User{}, &models.LogTable{})
 	if err2 != nil {
 		log.Fatal(err2, "config/db: can't migrate db", nil)
 		return
